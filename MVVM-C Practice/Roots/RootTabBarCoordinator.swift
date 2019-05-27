@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RootTabBarCoordinator: Coordinator<UINavigationController>, CoordinatingDependency {
+class RootTabBarCoordinator: Coordinator<UITabBarController>, CoordinatingDependency {
 
     private var tabBarDelegateProxy = TabBarDelegateProxy()
     private var navigationDelegateProxy = NavigationDelegateProxy()
@@ -16,7 +16,6 @@ class RootTabBarCoordinator: Coordinator<UINavigationController>, CoordinatingDe
     private var secondViewCoordinator: SecondViewCoordinator!
     private(set) var selectedCoordinator: Coordinating?
     
-    let tabBarController = UITabBarController()
     var dependency: AppDependency?
     
     override var childCoordinators: [Coordinating] {
@@ -27,7 +26,6 @@ class RootTabBarCoordinator: Coordinator<UINavigationController>, CoordinatingDe
             return [firstViewCoordinator, secondViewCoordinator]
         }
     }
-    
     
     override func start() {
         constructChildCoordinatorsIfNeed()
@@ -41,8 +39,7 @@ extension RootTabBarCoordinator {
         if started {
             return
         }
-        // Kiddd 為什麼要再init一次 tabBarDelegateProxy
-//        tabBarDelegateProxy = TabBarDelegateProxy()
+        
         tabBarDelegateProxy.delegate = self
         
         let firstBarNavigationController = generatedNavigationController(withTabBar: .featured)
@@ -51,19 +48,15 @@ extension RootTabBarCoordinator {
         let secondBarNavigationController = generatedNavigationController(withTabBar: .history)
         secondViewCoordinator = SecondViewCoordinator(viewController: secondBarNavigationController)
         
-        tabBarController.delegate = tabBarDelegateProxy
-        tabBarController.viewControllers = [firstBarNavigationController, secondBarNavigationController]
+        rootViewController.delegate = tabBarDelegateProxy
         
-    
         childCoordinators.forEach { coordinating in
             if let coordinatingDependency = coordinating as? CoordinatingDependency {
                 coordinatingDependency.dependency = dependency
             }
         }
         
-        // Kiddd
-        // 不懂為什麼不是 rootViewController.viewControllers = [firstViewController, secondViewController]
-        rootViewController.viewControllers = [tabBarController]
+        rootViewController.viewControllers = [firstBarNavigationController, secondBarNavigationController]
         selectedCoordinator = firstViewCoordinator
 
     }
@@ -85,7 +78,7 @@ extension RootTabBarCoordinator {
 extension RootTabBarCoordinator: TabBarDelegateProxyDelegate {
     func tabBarDelegateProxy(_ proxy: TabBarDelegateProxy, didSelect viewController: UIViewController) {
         selectedCoordinator?.deactive()
-        let newSelectedCoordinator = childCoordinators[tabBarController.selectedIndex]
+        let newSelectedCoordinator = childCoordinators[rootViewController.selectedIndex]
         newSelectedCoordinator.start()
         newSelectedCoordinator.active()
         selectedCoordinator = newSelectedCoordinator

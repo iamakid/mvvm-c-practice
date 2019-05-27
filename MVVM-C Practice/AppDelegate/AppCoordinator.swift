@@ -8,10 +8,7 @@
 
 import UIKit
 
-// Kiddd
-// 問題：為什麼要設T = UINavigationController
-// 是因為RootTabBarCoordinator 之後的rootViewController要是UINavigationController，才在AppCoordinator的地方也設成UINavigationController嗎
-class AppCoordinator: Coordinator<UINavigationController> {
+class AppCoordinator: Coordinator<UITabBarController> {
     
     private let dependency = AppDependency()
     
