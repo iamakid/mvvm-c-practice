@@ -9,7 +9,7 @@
 import UIKit
 
 protocol ThirdViewControllerDelegate {
-    func presentNewViewController(_ viewController: UIViewController)
+    func didTapPresentNewViewController(_ viewController: UIViewController)
 }
 
 class ThirdViewController: UIViewController {
@@ -36,7 +36,7 @@ class ThirdViewController: UIViewController {
     }
 
     @objc func buttonClicked(_ sender: UIButton) {
-        delegate?.presentNewViewController(self)
+        delegate?.didTapPresentNewViewController(self)
     }
 }
 

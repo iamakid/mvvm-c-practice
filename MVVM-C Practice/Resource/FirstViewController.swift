@@ -9,7 +9,7 @@
 import UIKit
 
 protocol FirstViewControllerDelegate {
-    func updateNum(in label: UILabel, newValue: Int)
+    func updateLabel(_ label: UILabel, with newValue: Int)
 }
 
 class FirstViewController: UIViewController {
@@ -50,9 +50,9 @@ class FirstViewController: UIViewController {
         
     }
     
-    @objc func buttonClicked(_ sender: UIButton) {
+    @objc func buttonClicked(_ button: UIButton) {
         num += 1
-        delegate?.updateNum(in: label, newValue: num)
+        delegate?.updateLabel(label, with: num)
     }
     
 }

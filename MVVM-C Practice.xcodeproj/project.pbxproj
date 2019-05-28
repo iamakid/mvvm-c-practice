@@ -10,7 +10,7 @@
 		070B19A7229D3F88007767B3 /* PresentCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 070B19A6229D3F88007767B3 /* PresentCoordinator.swift */; };
 		070B19A9229D4025007767B3 /* ThirdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 070B19A8229D4025007767B3 /* ThirdViewController.swift */; };
 		070B19AB229D40C3007767B3 /* ThirdViewCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 070B19AA229D40C3007767B3 /* ThirdViewCoordinator.swift */; };
-		070B19AD229D4587007767B3 /* PresentedViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 070B19AC229D4587007767B3 /* PresentedViewControllerDelegate.swift */; };
+		070B19AD229D4587007767B3 /* PresentedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 070B19AC229D4587007767B3 /* PresentedViewController.swift */; };
 		078EE77F229BB46600BB2A80 /* NavigationDelegateProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078EE77C229BB46600BB2A80 /* NavigationDelegateProxy.swift */; };
 		078EE780229BB46600BB2A80 /* Coordinating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078EE77D229BB46600BB2A80 /* Coordinating.swift */; };
 		078EE781229BB46600BB2A80 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078EE77E229BB46600BB2A80 /* Coordinator.swift */; };
@@ -51,7 +51,7 @@
 		070B19A6229D3F88007767B3 /* PresentCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentCoordinator.swift; sourceTree = "<group>"; };
 		070B19A8229D4025007767B3 /* ThirdViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThirdViewController.swift; sourceTree = "<group>"; };
 		070B19AA229D40C3007767B3 /* ThirdViewCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThirdViewCoordinator.swift; sourceTree = "<group>"; };
-		070B19AC229D4587007767B3 /* PresentedViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentedViewControllerDelegate.swift; sourceTree = "<group>"; };
+		070B19AC229D4587007767B3 /* PresentedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentedViewController.swift; sourceTree = "<group>"; };
 		078EE77C229BB46600BB2A80 /* NavigationDelegateProxy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationDelegateProxy.swift; sourceTree = "<group>"; };
 		078EE77D229BB46600BB2A80 /* Coordinating.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coordinating.swift; sourceTree = "<group>"; };
 		078EE77E229BB46600BB2A80 /* Coordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
@@ -149,7 +149,7 @@
 				070B19AA229D40C3007767B3 /* ThirdViewCoordinator.swift */,
 				070B19A8229D4025007767B3 /* ThirdViewController.swift */,
 				070B19A6229D3F88007767B3 /* PresentCoordinator.swift */,
-				070B19AC229D4587007767B3 /* PresentedViewControllerDelegate.swift */,
+				070B19AC229D4587007767B3 /* PresentedViewController.swift */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -342,7 +342,7 @@
 				078EE796229BD76900BB2A80 /* TabBarDelegateProxy.swift in Sources */,
 				078EE784229BB56C00BB2A80 /* AppDependency.swift in Sources */,
 				078EE77F229BB46600BB2A80 /* NavigationDelegateProxy.swift in Sources */,
-				070B19AD229D4587007767B3 /* PresentedViewControllerDelegate.swift in Sources */,
+				070B19AD229D4587007767B3 /* PresentedViewController.swift in Sources */,
 				070B19AB229D40C3007767B3 /* ThirdViewCoordinator.swift in Sources */,
 				078EE792229BC5E200BB2A80 /* FirstViewCoordinator.swift in Sources */,
 				078EE781229BB46600BB2A80 /* Coordinator.swift in Sources */,

@@ -25,7 +25,7 @@ class SecondViewCoordinator: Coordinator<UINavigationController>, CoordinatingDe
 }
 
 extension SecondViewCoordinator: SecondViewControllerDelegate {
-    func shouldPushNewViewController() {
+    func didTapPushNewViewController(_ viewController: SecondViewController) {
         
         // Q: 為什麼要把rootViewController 傳到下一層coordinator當 rootViewController
         // A: 之後的UINavigationController 還是要用最原始的 navigationController，

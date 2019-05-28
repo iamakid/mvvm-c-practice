@@ -25,7 +25,8 @@ class FirstViewCoordinator: Coordinator<UINavigationController>, CoordinatingDep
 }
 
 extension FirstViewCoordinator: FirstViewControllerDelegate {
-    func updateNum(in label: UILabel, newValue: Int) {
+    
+    func updateLabel(_ label: UILabel, with newValue: Int) {
         label.text = "\(newValue)"
     }
 }

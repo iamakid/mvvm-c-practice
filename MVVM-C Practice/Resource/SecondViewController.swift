@@ -9,7 +9,7 @@
 import UIKit
 
 protocol SecondViewControllerDelegate {
-    func shouldPushNewViewController()
+    func didTapPushNewViewController(_ viewController: SecondViewController)
 }
 
 class SecondViewController: UIViewController {
@@ -36,7 +36,7 @@ class SecondViewController: UIViewController {
     }
 
     @objc func buttonClicked(_ sender: UIButton) {
-        delegate?.shouldPushNewViewController()
+        delegate?.didTapPushNewViewController(self)
     }
 }
 

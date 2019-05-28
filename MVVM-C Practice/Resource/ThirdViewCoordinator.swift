@@ -24,7 +24,7 @@ class ThirdViewCoordinator: Coordinator<UINavigationController>, CoordinatingDep
 }
 
 extension ThirdViewCoordinator: ThirdViewControllerDelegate {
-    func presentNewViewController(_ viewController: UIViewController) {
+    func didTapPresentNewViewController(_ viewController: UIViewController) {
         
         let coordinator = PresentedCoordinator(viewController: vc)
         startChild(coordinator: coordinator)
