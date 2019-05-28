@@ -16,10 +16,16 @@ class FirstViewCoordinator: Coordinator<UINavigationController>, CoordinatingDep
     override func start() {
         if (!started) {
             let vc = FirstViewController()
-//            vc.delegate = self
+            vc.delegate = self
             viewController = vc
             show(viewController: vc)
         }
         super.start()
+    }
+}
+
+extension FirstViewCoordinator: FirstViewControllerDelegate {
+    func updateNum(in label: UILabel, newValue: Int) {
+        label.text = "\(newValue)"
     }
 }

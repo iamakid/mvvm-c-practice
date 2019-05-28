@@ -8,7 +8,16 @@
 
 import UIKit
 
+protocol FirstViewControllerDelegate {
+    func updateNum(in label: UILabel, newValue: Int)
+}
+
 class FirstViewController: UIViewController {
+    
+    private(set) var num: Int = 0
+    let label = UILabel()
+    var delegate: FirstViewControllerDelegate?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,10 +36,23 @@ class FirstViewController: UIViewController {
         NSLayoutConstraint(item: button, attribute: .centerY, relatedBy: .equal, toItem: view, attribute: .centerY, multiplier: 1, constant: 0).isActive = true
         NSLayoutConstraint(item: button, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 100).isActive = true
         NSLayoutConstraint(item: button, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 100).isActive = true
+        
+        
+        label.backgroundColor = .white
+        label.text = "kidtest1234"
+        label.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(label)
+        
+        NSLayoutConstraint(item: label, attribute: .centerX, relatedBy: .equal, toItem: view, attribute: .centerX, multiplier: 1, constant: 0).isActive = true
+        NSLayoutConstraint(item: label, attribute: .top, relatedBy: .equal, toItem: button, attribute: .bottom, multiplier: 1, constant: 30).isActive = true
+        NSLayoutConstraint(item: label, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 100).isActive = true
+        NSLayoutConstraint(item: label, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 100).isActive = true
+        
     }
     
     @objc func buttonClicked(_ sender: UIButton) {
-        print("buttonClicked")
+        num += 1
+        delegate?.updateNum(in: label, newValue: num)
     }
     
 }

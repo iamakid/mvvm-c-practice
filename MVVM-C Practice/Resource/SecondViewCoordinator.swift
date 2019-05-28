@@ -16,10 +16,18 @@ class SecondViewCoordinator: Coordinator<UINavigationController>, CoordinatingDe
     override func start() {
         if (!started) {
             let vc = SecondViewController()
-//            vc.delegate = self
+            vc.delegate = self
             viewController = vc
             show(viewController: vc)
         }
         super.start()
+    }
+}
+
+extension SecondViewCoordinator: SecondViewControllerDelegate {
+    func shouldPushNewViewController() {
+        
+        let coordinator = SecondViewCoordinator(viewController: rootViewController)
+        startChild(coordinator: coordinator)
     }
 }

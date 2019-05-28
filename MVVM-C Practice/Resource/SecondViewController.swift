@@ -8,8 +8,14 @@
 
 import UIKit
 
+protocol SecondViewControllerDelegate {
+    func shouldPushNewViewController()
+}
+
 class SecondViewController: UIViewController {
 
+    var delegate: SecondViewControllerDelegate?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -18,7 +24,7 @@ class SecondViewController: UIViewController {
         view.backgroundColor = .yellow
         
         let button = UIButton(type: .system)
-        button.setTitle("click me 222", for: .normal)
+        button.setTitle("click me" + "_\(arc4random() % 1000)", for: .normal)
         button.addTarget(self, action: #selector(buttonClicked(_:)), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(button)
@@ -30,8 +36,7 @@ class SecondViewController: UIViewController {
     }
 
     @objc func buttonClicked(_ sender: UIButton) {
-        print("buttonClicked")
+        delegate?.shouldPushNewViewController()
     }
-
 }
 
