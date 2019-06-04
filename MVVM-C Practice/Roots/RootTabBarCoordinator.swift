@@ -15,6 +15,7 @@ class RootTabBarCoordinator: Coordinator<UITabBarController>, CoordinatingDepend
     private var navigationDelegateProxy = NavigationDelegateProxy()
     
     // Coordinator
+    private var todoCoordinator: TodoCoordinator!
     private var firstViewCoordinator: FirstViewCoordinator!
     private var secondViewCoordinator: SecondViewCoordinator!
     private var thirdViewCoordinator: ThirdViewCoordinator!
@@ -28,7 +29,7 @@ class RootTabBarCoordinator: Coordinator<UITabBarController>, CoordinatingDepend
         // 因為protocol 設定childCoordinators 為 var {get, setp}, 所以不能只實作getter。會變成get-only，不符合protocol
         set {}
         get {
-            return [firstViewCoordinator, secondViewCoordinator, thirdViewCoordinator]
+            return [todoCoordinator, firstViewCoordinator, secondViewCoordinator, thirdViewCoordinator]
         }
     }
     
@@ -46,6 +47,9 @@ extension RootTabBarCoordinator {
         }
         
         tabBarDelegateProxy.delegate = self
+        
+        let todoBarNavigationController =  generatedNavigationController(withTabBar: .contacts)
+        todoCoordinator = TodoCoordinator(viewController: todoBarNavigationController)
         
         let firstBarNavigationController = generatedNavigationController(withTabBar: .featured)
         firstViewCoordinator = FirstViewCoordinator(viewController: firstBarNavigationController)
@@ -65,8 +69,9 @@ extension RootTabBarCoordinator {
             }
         }
         
-        rootViewController.viewControllers = [firstBarNavigationController, secondBarNavigationController, thirdViewCoordinator.rootViewController]
-        selectedCoordinator = firstViewCoordinator
+        rootViewController.viewControllers = [todoBarNavigationController, firstBarNavigationController, secondBarNavigationController, thirdViewCoordinator.rootViewController]
+        selectedCoordinator = todoCoordinator
+//        selectedCoordinator = firstViewCoordinator
 
     }
     
