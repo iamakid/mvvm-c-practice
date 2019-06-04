@@ -34,6 +34,8 @@
 		07E08C6322A606D200F46659 /* ToDoDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E08C6122A606D200F46659 /* ToDoDataManager.swift */; };
 		07E08C6622A609AB00F46659 /* ToDoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E08C6522A609AB00F46659 /* ToDoItem.swift */; };
 		07E08C6822A61D1F00F46659 /* TodoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E08C6722A61D1F00F46659 /* TodoTableViewCell.swift */; };
+		07E08C6A22A6291600F46659 /* UIColor+image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E08C6922A6291600F46659 /* UIColor+image.swift */; };
+		07E08C6C22A6297000F46659 /* TodoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E08C6B22A6297000F46659 /* TodoViewModel.swift */; };
 		37E3F3A8171D6D201B399618 /* Pods_MVVM_C_Practice.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C1C7C9C5D2B0226DCF889B6 /* Pods_MVVM_C_Practice.framework */; };
 /* End PBXBuildFile section */
 
@@ -88,6 +90,8 @@
 		07E08C6122A606D200F46659 /* ToDoDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDoDataManager.swift; sourceTree = "<group>"; };
 		07E08C6522A609AB00F46659 /* ToDoItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoItem.swift; sourceTree = "<group>"; };
 		07E08C6722A61D1F00F46659 /* TodoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoTableViewCell.swift; sourceTree = "<group>"; };
+		07E08C6922A6291600F46659 /* UIColor+image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+image.swift"; sourceTree = "<group>"; };
+		07E08C6B22A6297000F46659 /* TodoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoViewModel.swift; sourceTree = "<group>"; };
 		1C1C7C9C5D2B0226DCF889B6 /* Pods_MVVM_C_Practice.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MVVM_C_Practice.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3649DE5DE0AA71EBAF389758 /* Pods-MVVM-C Practice.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MVVM-C Practice.debug.xcconfig"; path = "Target Support Files/Pods-MVVM-C Practice/Pods-MVVM-C Practice.debug.xcconfig"; sourceTree = "<group>"; };
 		9DC77CF70CE15E61D8BB9FEF /* Pods-MVVM-C Practice.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MVVM-C Practice.release.xcconfig"; path = "Target Support Files/Pods-MVVM-C Practice/Pods-MVVM-C Practice.release.xcconfig"; sourceTree = "<group>"; };
@@ -124,6 +128,7 @@
 			children = (
 				07E08C5F22A606D200F46659 /* DataManager */,
 				078EE77B229BB46600BB2A80 /* Coordinator */,
+				07E08C6922A6291600F46659 /* UIColor+image.swift */,
 			);
 			path = Library;
 			sourceTree = "<group>";
@@ -232,6 +237,7 @@
 			isa = PBXGroup;
 			children = (
 				07E08C1B22A1060100F46659 /* TodoViewController.swift */,
+				07E08C6B22A6297000F46659 /* TodoViewModel.swift */,
 				07E08C1D22A1060D00F46659 /* TodoCoordinator.swift */,
 				07E08C6722A61D1F00F46659 /* TodoTableViewCell.swift */,
 			);
@@ -461,6 +467,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07E08C6C22A6297000F46659 /* TodoViewModel.swift in Sources */,
 				078EE78F229BC1B700BB2A80 /* SecondViewController.swift in Sources */,
 				078EE796229BD76900BB2A80 /* TabBarDelegateProxy.swift in Sources */,
 				078EE784229BB56C00BB2A80 /* AppDependency.swift in Sources */,
@@ -475,6 +482,7 @@
 				070B19A7229D3F88007767B3 /* PresentCoordinator.swift in Sources */,
 				078EE794229BC8E700BB2A80 /* SecondViewCoordinator.swift in Sources */,
 				07E08C1E22A1060D00F46659 /* TodoCoordinator.swift in Sources */,
+				07E08C6A22A6291600F46659 /* UIColor+image.swift in Sources */,
 				070B19A9229D4025007767B3 /* ThirdViewController.swift in Sources */,
 				078EE786229BB9B400BB2A80 /* AppCoordinator.swift in Sources */,
 				078EE789229BC0A800BB2A80 /* RootTabBarCoordinator.swift in Sources */,

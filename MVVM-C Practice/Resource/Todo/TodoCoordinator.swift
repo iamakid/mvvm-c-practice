@@ -13,7 +13,8 @@ class TodoCoordinator: Coordinator<UINavigationController>, CoordinatingDependen
     
     override func start() {
         if (!started) {
-            let vc = TodoViewController()
+            let viewModel = TodoViewModel(with: dependency!.todoManager)
+            let vc = TodoViewController(with: viewModel)
 //            vc.delegate = self
 //            viewController = vc
             show(viewController: vc)

@@ -9,78 +9,11 @@
 import UIKit
 import RxSwift
 import RxCocoa
-//import RxDataSources
 import SnapKit
-
-protocol TodoViewModelInputs {
-    
-    var addTodoAction: PublishSubject<String> { get }
-    var selectedTodoAction: PublishSubject<Int> { get }
-}
-
-protocol TodoViewModelOutputs {
-    var fetchTasks: Observable<[ToDoItem]> { get }
-}
-
-protocol TodoViewModelType {
-    var inputs: TodoViewModelInputs { get }
-    var outputs: TodoViewModelOutputs { get }
-}
-
-class TodoViewModel: TodoViewModelType, TodoViewModelInputs {
-    
-    var inputs: TodoViewModelInputs { return self }
-    var outputs: TodoViewModelOutputs { return self }
-    
-    let addTodoAction = PublishSubject<String>()
-    let selectedTodoAction = PublishSubject<Int>()
-    let disposeBag = DisposeBag()
-    
-    private let taskItems = BehaviorRelay<[ToDoItem]>(value: [])
-    
-    init() {
-        bind()
-    }
-}
-
-extension TodoViewModel {
-    
-    func bind() {
-        
-        addTodoAction
-            .subscribe(onNext: {  [unowned self] taskName in
-                print("addTodoAction: \(taskName)")
-                
-                let item = ToDoItem(name: taskName, isChecked: false)
-                self.taskItems.accept(self.taskItems.value + [item])
-            })
-            .disposed(by: disposeBag)
-        
-        selectedTodoAction
-            .subscribe(onNext: { index in
-                print("selectedTodoAction: at \(index)")
-                var currentItems = self.taskItems.value
-                
-                var task = self.taskItems.value[index]
-                task.isChecked = !task.isChecked
-                
-                currentItems[index] = task
-                
-                self.taskItems.accept(currentItems)
-            })
-            .disposed(by: disposeBag)
-    }
-}
-
-extension TodoViewModel: TodoViewModelOutputs {
-    var fetchTasks: Observable<[ToDoItem]> {
-        return taskItems.asObservable()
-    }
-}
 
 class TodoViewController: UIViewController {
     
-    let viewModel = TodoViewModel()
+    let viewModel: TodoViewModel
     let disposeBag = DisposeBag()
     
     let tableView: UITableView = {
@@ -96,6 +29,16 @@ class TodoViewController: UIViewController {
     // 此時的target 跟 action 還沒有在virtual table中被建立
     let addBarItem: UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: nil, action:nil)
     
+    init(with viewModel: TodoViewModel ) {
+        self.viewModel = viewModel
+        
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -104,6 +47,10 @@ class TodoViewController: UIViewController {
         
         setupSubviews()
         bind()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        viewModel.inputs.fetchTodoItems()
     }
     
     func setupSubviews() {
@@ -122,23 +69,17 @@ class TodoViewController: UIViewController {
         
         let outputs = viewModel.outputs
         let inputs = viewModel.inputs
-
-        outputs.fetchTasks.subscribe {
-            print($0)
-        }.disposed(by: disposeBag)
         
-        
-        outputs.fetchTasks
+        outputs.todoItems
             .asDriver(onErrorJustReturn: [])
             .drive(tableView.rx.items(
                 cellIdentifier: "Cell",
                 cellType: TodoTableViewCell.self)) { index, task, cell in
-//                    cell.textLabel?.text = task.name
                     cell.updateContent(with: task)
             }
             .disposed(by: disposeBag)
 
-        // ui binding
+        // UI binding
         addBarItem.rx.tap
             .subscribe { [weak self] _ in
                 self?.showAddTodoAlert()
@@ -149,7 +90,9 @@ class TodoViewController: UIViewController {
         tableView.rx
             .itemSelected
             .map{ $0.row }
-            .bind(to: inputs.selectedTodoAction)
+            .subscribe(onNext: { index in
+                inputs.selectTodoItem(at: index)
+            })
             .disposed(by: disposeBag)
         
 //        tableView.rx
@@ -162,19 +105,17 @@ class TodoViewController: UIViewController {
 }
 
 extension TodoViewController {
+    
     func showAddTodoAlert() {
-        
         let alert = UIAlertController(title: "task name", message: nil, preferredStyle: .alert)
         alert.addTextField(configurationHandler: nil)
+        
         let cancelBtn = UIAlertAction(title: "cancel", style: .cancel, handler: nil)
         let okBtn = UIAlertAction(title: "ok", style: .default) { [weak self] _ in
-            if
-                let textField = alert.textFields?.first,
+            if let textField = alert.textFields?.first,
                 let text = textField.text,
                 text.count > 0 {
-                print(text)
-                
-                self?.viewModel.inputs.addTodoAction.onNext(text)
+                self?.viewModel.inputs.addTodoItem(name: text)
             }
         }
         

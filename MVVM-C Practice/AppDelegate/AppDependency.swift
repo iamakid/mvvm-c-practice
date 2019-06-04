@@ -13,7 +13,7 @@ class KidData {
 
 // 用來層層傳遞資訊給新的畫面
 struct AppDependency {
-    let kidData = KidData()
+    let todoManager = ToDoDataManager()
 }
 
 protocol CoordinatingDependency: class {
