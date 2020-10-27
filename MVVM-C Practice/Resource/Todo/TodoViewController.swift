@@ -13,7 +13,7 @@ import SnapKit
 
 class TodoViewController: UIViewController {
     
-    let viewModel: TodoViewModel
+    let viewModel: TodoViewModelType
     let disposeBag = DisposeBag()
     
     let tableView: UITableView = {
@@ -29,7 +29,7 @@ class TodoViewController: UIViewController {
     // 此時的target 跟 action 還沒有在virtual table中被建立
     let addBarItem: UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: nil, action:nil)
     
-    init(with viewModel: TodoViewModel ) {
+    init(with viewModel: TodoViewModelType) {
         self.viewModel = viewModel
         
         super.init(nibName: nil, bundle: nil)
